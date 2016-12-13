@@ -3,9 +3,13 @@ helps you find a custom painted bikeshare bike that can earn you free ride time.
 
 ##Install
 First make sure you have installed npm
+
 Install http-server  ```npm http-server -g```
+
 Then clone this repo
+
 Next start the http-server ```npm http-server [path to this repo] -o```
+
 The ```-o``` option will open the site in your default browser
 
 
