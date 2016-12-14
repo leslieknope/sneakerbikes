@@ -30,7 +30,10 @@ dataButton.addEventListener("click", function() {
         var data = JSON.parse(xhr.responseText);
         var htmlString = "";
         console.log(selection);
-        htmlString += '<h3>Total Free Bikes available ' + data.data.bikes.length+ '</h3>'
+        var totalBikes = data.data.bikes.length
+        var numSneakerBikes = 0;
+        
+        
 
         if(selection.value === "Any"){
             
@@ -38,17 +41,19 @@ dataButton.addEventListener("click", function() {
                 var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
             
             }
-            results.innerHTML = htmlString + '<div><button id="getMap">Map It?</button></div>';
-            mapButton.hidden = "false"
+            htmlString += '<h3>Total Free Bikes available ' + totalBikes + '</h3>'
+            results.innerHTML = htmlString;
         };
         
         if(selection.value === "Sneaker"){
             for(var i=0; i< data.data.bikes.length; i++){
                 if(data.data.bikes[i]['name'].search("BIKETOWN") === -1){
                 var marker = L.marker([data.data.bikes[i]['lat'], data.data.bikes[i]['lon']]).bindPopup(data.data.bikes[i]['name']).addTo(areaMap);
+                numSneakerBikes++;
                 }  
             
             }
+            htmlString += '<h3>Total Free Sneaker Bikes available ' + numSneakerBikes + '</h3>'
             results.innerHTML = htmlString 
         };
       
